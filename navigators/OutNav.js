@@ -1,8 +1,9 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import { BLACK_COLOR } from "../colors";
+
 import Join from "../screens/Join";
 import Login from "../screens/Login";
+import { BLACK_COLOR } from "../colors";
 
 const Nav = createNativeStackNavigator();
 
