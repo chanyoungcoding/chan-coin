@@ -1,8 +1,12 @@
-import React, { useEffect, useReducer, useRef } from "react";
-import { Animated, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import React, { useEffect, useRef } from "react";
+import { Animated, View, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 
-const Coin = ({ symbol, index }) => {
+const Coin = ({ symbol, index, id }) => {
+
+  const navigation = useNavigation();
+
   const opacity = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -19,14 +23,19 @@ const Coin = ({ symbol, index }) => {
   });
 
   return (
-    <Wrapper style={{ flex: 0.31, opacity, transform: [{ scale }] }}>
-      <Icon
-        source={{
-          uri: `https://coplore-icon-api.vercel.app/api/icons/${symbol}`,
-        }}
-      />
-      <CoinName>{symbol}</CoinName>
-    </Wrapper>
+    <TouchableOpacity
+      style={{ flex: 0.31 }}
+      onPress={() => navigation.navigate("Detail", { symbol, id })}
+    >
+      <Wrapper style={{ opacity, transform: [{ scale }] }}>
+        <Icon
+          source={{
+            uri: `https://coplore-icon-api.vercel.app/api/icons/${symbol}`,
+          }}
+        />
+        <CoinName>{symbol}</CoinName>
+      </Wrapper>
+    </TouchableOpacity>
   );
 };
 
@@ -43,7 +52,7 @@ const CoinName = styled.Text`
   font-size: 16px;
 `;
 
-const Icon = styled.Image`
+export const Icon = styled.Image`
   border-radius: 20px;
   width: 40px;
   height: 40px;

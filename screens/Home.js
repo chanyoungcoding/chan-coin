@@ -12,7 +12,7 @@ const Home = () => {
     queryKey: ["coins"],
     queryFn: coins
   })
-  
+
   const [cleanData, setCleanData] = useState([]);
 
   useEffect(() => {
@@ -35,12 +35,12 @@ const Home = () => {
     <Container>
       <FlatList
         data={cleanData}
-        ItemSeparatorComponent={() => <View style={{ height: 10}}/>}
+        ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
         numColumns={3}
-        columnWrapperStyle={{justifyContent: "space-between"}}
+        columnWrapperStyle={{ justifyContent: "space-between" }}
         keyExtractor={(item) => item.id}
         renderItem={({ item, index }) => (
-          <Coin index={index} symbol={item.symbol}/>
+          <Coin index={index} id={item.id} symbol={item.symbol} />
         )}
       />
     </Container>
